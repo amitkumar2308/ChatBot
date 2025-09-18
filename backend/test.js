@@ -1,26 +1,32 @@
 const axios = require("axios");
 require("dotenv").config();
 
-async function fetchNews(page = 1, pageSize = 20) {
+async function fetchNews() {
   try {
     const res = await axios.get("https://gnews.io/api/v4/top-headlines", {
       params: {
         token: process.env.GNEWS_API_KEY,
         lang: "en",
-        page,
-        max: pageSize
+        max: 10,
+        topic: "world" // ADD THIS
       }
     });
 
-    return res.data.articles.map((a, i) => ({
+    const articles = res.data.articles.map((a, i) => ({
       title: a.title || `Article ${i + 1}`,
       description: a.description || "",
       url: a.url
     }));
+
+    return articles;
   } catch (err) {
     console.error("❌ Error fetching news:", err.message);
     return [];
   }
 }
 
-module.exports = { fetchNews };
+(async () => {
+  const articles = await fetchNews();
+  console.log("=== Articles ===");
+  console.log(articles);
+})();
