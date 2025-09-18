@@ -1,70 +1,72 @@
-# Getting Started with Create React App
+# 📰 News Chatbot (Frontend)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a simple **React + TailwindCSS chatbot** that allows users to ask questions about the news.  
+It saves session history, shows "Typing..." while waiting for bot replies, and connects with a backend API.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## ⚙️ Setup Guide
 
-### `npm start`
+### 1️⃣ Clone the Repository
+```sh
+git clone https://github.com/your-username/news-chatbot.git
+cd news-chatbot/frontend
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 2️⃣ Install Dependencies
+```sh
+npm install
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+This will install:
+- **react**
+- **axios**
+- **uuid**
+- **tailwindcss**
 
-### `npm test`
+### 3️⃣ Configure TailwindCSS
+Update `tailwind.config.js`:
+```js
+content: ["./src/**/*.{js,jsx,ts,tsx}"],
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Add Tailwind imports in `src/index.css`:
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
 
-### `npm run build`
+### 4️⃣ Run the Development Server
+```sh
+npm start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The app will run at 👉 `http://localhost:3000`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🔗 Backend API Requirements
+The frontend expects a backend running with these endpoints:
+- `GET /history/:sessionId` → Fetch chat history  
+- `POST /chat/:sessionId` → Send user query & get bot response  
+- `DELETE /reset/:sessionId` → Reset chat session  
 
-### `npm run eject`
+You can build the backend with **Node.js + Express** and connect it to an AI model (OpenAI, Qdrant, etc.).
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 📂 Project Structure
+```
+frontend/
+│── src/
+│   ├── components/
+│   │   └── ChatBox.jsx   # Chat UI component
+│   ├── App.js            # Main app logic
+│   ├── index.js          # Entry point
+│   ├── App.css
+│   ├── index.css
+│── package.json
+│── tailwind.config.js
+│── README.md
+```
