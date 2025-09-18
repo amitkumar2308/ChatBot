@@ -16,7 +16,7 @@ function App() {
 
   const fetchHistory = async () => {
     try {
-      const res = await axios.get(`http://localhost:3000/history/${sessionId}`);
+      const res = await axios.get(`https://chatbot-backend-632d.onrender.com/history/${sessionId}`);
       setMessages(res.data.messages);
     } catch (err) {
       console.error("History fetch error", err);
@@ -31,7 +31,7 @@ function App() {
     setLoading(true);
 
     try {
-      const res = await axios.post(`http://localhost:3000/chat/${sessionId}`, {
+      const res = await axios.post(`https://chatbot-backend-632d.onrender.com/chat/${sessionId}`, {
         query: userMsg.text,
       });
       setMessages((prev) => [...prev, { role: "bot", text: res.data.answer }]);
@@ -43,7 +43,7 @@ function App() {
 
   const resetSession = async () => {
     try {
-      await axios.delete(`http://localhost:3000/reset/${sessionId}`);
+      await axios.delete(`https://chatbot-backend-632d.onrender.com/reset/${sessionId}`);
       setMessages([]);
       const newId = uuidv4();
       setSessionId(newId);
